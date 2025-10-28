@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Birthday Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #d6c4a8, #f3e9dc, #e8d8b7);
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            overflow-x: hidden;
+            color: #4a3b2b;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(250, 245, 235, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(100, 85, 60, 0.2);
+        }
+
+        h1 {
+            color: #8b5e3c;
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .card {
+            background-color: #f5e3c3;
+            border-radius: 20px;
+            padding: 30px;
+            width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-align: center;
+            font-family: "Brush Script MT", cursive;
+        }
+
+        .image-container {
+            width: 55%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            border-radius: 25px;
+            margin: 0 auto 25px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 25px;
+            display: block;
+        }
+
+        .card p {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5em;
+            color: #4a3b2b;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .spotify-embed {
+            margin: 20px 0;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        button {
+            background: #b34b4b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+        }
+
+        .gift-button {
+            background-color: #ffb6c1;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .gift-button:hover {
+            background-color: #ff9cb1;
+            transform: scale(1.05);
+        }
+
+        .letter-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(30, 20, 10, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .letter-content {
+            background: #f8f3e7;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            color: #4a3b2b;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            animation: appear 0.4s ease;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #c57b57;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        @keyframes appear {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Birthday!</h1>
+
+        <div class="card">
+            <div class="image-container">
+                <img src="rae.jpg" alt="Birthday Person">
+            </div>
+            <h2>Hello, Schatz! O' Mein Liebling</h2>
+            <p>
+                I hope today (everyday) treats you gently. You deserve a day that feels peaceful, easy, and kind. Just like the way you make others feel without even trying.
+                Thank you for always be there, listening and smiling. You're worth to be pour with so much love.
+            </p>
+        </div>
+
+        <div class="spotify-embed">
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3veTpvb6fyOccHljXTOS8i?utm_source=generator" width="600" height="300" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+
+        <div class="buttons">
+            <button onclick="openLetter(1)">First Letter</button>
+            <button onclick="openLetter(2)">Second Letter</button>
+            <button onclick="openLetter(3)">Third Letter</button>
+        </div>
+
+        <!-- 🌸 The only flower gift button now -->
+        <button id="openGiftBtn" class="gift-button">A Little Gift</button>
+    </div>
+
+    <!-- Letters -->
+    <div class="letter-modal" id="letter1">
+        <div class="letter-content">
+            <button class="close-btn" onclick="closeLetter(1)">×</button>
+            <h2>Letter 1: From Me, As Your Friend</h2>
+            <p>Happy Birthday! Though it was already late, but you"re worth for being celebrated every single day anyway. You’re truly a gem, i remember our first conversation, that time i didn't even thought we would become this close. And i'm happy that we are now 🌻</p>
+        </div>
+    </div>
+
+    <div class="letter-modal" id="letter2">
+        <div class="letter-content">
+            <button class="close-btn" onclick="closeLetter(2)">×</button>
+            <h2>Letter 2: From Me, As A Stranger</h2>
+            <p>We barely know about each other, like maybe the kind of drink we usually buy and can't live without. We just know each other through the text we sent, playful convo even the deep one, but still ... we haven't known about each other, fully. At least, not in the deep way like someone whose frequently meet with us in a real life. But for me, being able to know you is enough. We still have so much time, and perhaps ... the time will bring us into the path where we meet in person💛</p>
+        </div>
+    </div>
+
+    <div class="letter-modal" id="letter3">
+        <div class="letter-content">
+            <button class="close-btn" onclick="closeLetter(3)">×</button>
+            <h2>Last Letter: From Me, As A "Person"</h2>
+            <p>The feeling is real, trust me. I meant every words i said, the butterfly, the smile when something hit deep to the bone even just a text full of praising words. I know we can't make it, we both know. There's no way what we feels and what we hope we could have would be real, it was against many things. Cz you know? There's a sentence that said, "There's no place for us here", and it is actually hit so deep. Yeah, there're none, but we can still sharing and feeling we have for now, let the time flow and we'll trust it to make this story great enough and worth to read. But, if someday we find ourselves standing beneath the same night sky,
+and I happen to whisper about the moon being insanely beautiful that night,
+I hope you’ll know what I really mean. 🌙</p>
+        </div>
+    </div>
+
+    <!-- ✅ JavaScript -->
+    <script>
+        function openLetter(num) {
+            document.getElementById('letter' + num).style.display = 'flex';
+        }
+
+        function closeLetter(num) {
+            document.getElementById('letter' + num).style.display = 'none';
+        }
+
+        // 🌸 Smooth redirect with a short delay
+        document.getElementById("openGiftBtn").addEventListener("click", () => {
+            const btn = document.getElementById("openGiftBtn");
+            btn.textContent = "Opening your flower gift...";
+            btn.disabled = true;
+            setTimeout(() => {
+                window.location.href = "main.html";
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
